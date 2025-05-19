@@ -1,7 +1,9 @@
-# Tauri + React + Typescript
+# RbPiEasyNAS
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+This Project is intended for the non technical User, that want a nice GUI to access External Drives, connected to 
+a Raspberry Pi in a NAS like fashion.
 
-## Recommended IDE Setup
+The idea is that the user can connect to their Raspberry Pi, see the accessible drives and be able to manipulate them.
+Thus having a fully featured, budget friendly NAS at one's hands with just a Raspberry Pi and an external drive
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+-- Still Work in Progess --
