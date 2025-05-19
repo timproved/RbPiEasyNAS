@@ -1,6 +1,6 @@
 # RbPiEasyNAS
 
-This Project is intended for the non technical User, that want a nice GUI to access External Drives, connected to 
+This Project is intended for the non technical User, that wants a nice GUI to access External Drives, connected to 
 a Raspberry Pi in a NAS like fashion.
 
 The idea is that the user can connect to their Raspberry Pi, see the accessible drives and be able to manipulate them.
