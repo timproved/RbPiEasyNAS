@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 use ssh2::Session;
-use std::{net::TcpStream, sync::Mutex, time::Duration};
+use std::{error, net::TcpStream, sync::Mutex, time::Duration};
 use uuid::Uuid;
 
 use crate::{models::PiConnection, util};
@@ -58,6 +58,7 @@ pub async fn connect_to_pi(ip: String, username: String, password: String) -> Re
             ))
         }
     };
+    println!("Got devices!");
 
     //Map Conenction to Object
     let pi_connection = PiConnection {
@@ -68,6 +69,15 @@ pub async fn connect_to_pi(ip: String, username: String, password: String) -> Re
         connected: true,
         storage_devices,
     };
+
+    // Debug print the connection with storage devices
+    println!(
+        "Connection with {} storage devices being stored:",
+        pi_connection.storage_devices.len()
+    );
+    for device in &pi_connection.storage_devices {
+        println!("Device: {} at {}", device.name, device.mount_point);
+    }
 
     //Store Connection
     match add_pi_connection(pi_connection).await {

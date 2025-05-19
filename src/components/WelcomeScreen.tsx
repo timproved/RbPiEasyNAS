@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { PlusCircle, Server, HardDrive } from "lucide-react";
 import { getConnectedPis, connectRaspberryPi } from '@/lib/api';
 import { PiConnection } from '@/models/PiConnection';
+import { formatBytesToGB, formatBytesToString } from '@/lib/utils';
 const WelcomeScreen = () => {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [connectedPis, setConnectedPis] = useState<PiConnection[]>([]);
@@ -29,6 +30,10 @@ const WelcomeScreen = () => {
 		const loadConnections = async () => {
 			try {
 				const pis = await getConnectedPis();
+				console.log("Loaded Pis:", pis);
+				if (pis && pis.length > 0) {
+					console.log("First Pi storage devices:", pis[0].storage_devices);
+				}
 				setConnectedPis(pis);
 			} catch (err) {
 				console.error('Failed to load connections:', err);
@@ -111,8 +116,8 @@ const WelcomeScreen = () => {
 
 								<div className="space-y-2">
 									<p className="text-sm font-medium">Storage Devices</p>
-									{pi.storageDevices && pi.storageDevices.length > 0 ? (
-										pi.storageDevices.map((device) => (
+									{pi.storage_devices && pi.storage_devices.length > 0 ? (
+										pi.storage_devices.map((device) => (
 											<div
 												key={device.id}
 												className="flex items-center space-x-2 text-sm p-2 rounded bg-slate-100 dark:bg-slate-700"
@@ -120,7 +125,7 @@ const WelcomeScreen = () => {
 												<HardDrive className="h-4 w-4" />
 												<span>{device.name}</span>
 												<span className="text-slate-500 text-xs ml-auto">
-													{Math.round((device.sizeFree / device.sizeTotal) * 100)}% free
+													{formatBytesToString(device.size_free)} free of {formatBytesToString(device.size_total)}
 												</span>
 											</div>
 										))
