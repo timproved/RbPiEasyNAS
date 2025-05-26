@@ -75,7 +75,7 @@ const WelcomeScreen = () => {
 			{connectedPis.length === 0 ? (
 				<div className="text-center space-y-6 max-w-md">
 					<Server className="mx-auto h-16 w-16 text-slate-400" />
-					<h1 className="text-2xl font-bold tracking-tight">Welcome to Pi NAS Manager</h1>
+					<h1 className="text-2xl font-bold tracking-tight">Welcome to RbPiEasyNAS</h1>
 					<p className="text-slate-500 dark:text-slate-400">
 						Connect to your Raspberry Pi to start managing your NAS storage.
 					</p>
